@@ -1,3 +1,25 @@
+# Awesome authentication project demo
+
+- React
+- MaterialUI 4
+- React Router 5
+- React Hook Forms
+- Context API
+- Typescript (My first project using TS)
+- Firebase Authentication (Email/Password)
+
+
+# TODO
+
+- UI for Login/Signup | done
+- Implement authentication - login/signup | done
+- Form/Input validation (client side) | done
+- UI for dash | in progress
+- Error handling | in progress
+- React Helmet | in progress
+
+
+
 # Awesome authentication project
 
 The project has some setup but still requires some efforts to make it awesome. Therefore, we need someone to help us to make it production ready.
