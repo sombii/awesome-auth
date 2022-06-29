@@ -36,7 +36,7 @@ export default function FormInput<T, T1, T2>(props: InputProps<T, T1, T2>) {
             name={props.name}
             control={props.control}
             render={({field, formState, fieldState: {error}}) => {
-                console.log(error)
+                // console.log(error)
                 return (
                     <TextField
                         name={props.name}

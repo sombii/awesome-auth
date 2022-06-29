@@ -5,6 +5,8 @@ import {Route, Switch} from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Container from "@material-ui/core/Container";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./pages/PrivateRoute";
 
 function App() {
     return (
@@ -12,13 +14,13 @@ function App() {
             <CssBaseline/>
             <Container disableGutters>
                 <Switch>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
+                    <PrivateRoute path="/dashboard" >
+                        <Dashboard/>
+                    </PrivateRoute>
                     <Route path="/signup">
                         <Signup/>
                     </Route>
-                    <Route path="/">
+                    <Route path="/" exact>
                         <Login/>
                     </Route>
                 </Switch>
