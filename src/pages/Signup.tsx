@@ -72,70 +72,70 @@ export default function Signup() {
     if (status.initialLoading)
         return <SimpleBackdrop/>
 
-    if (!status.initialLoading && currentUser)
-        return <Redirect to="/dashboard"/>
+    if (!status.initialLoading && !currentUser)
+        return (
+            <>
+                <Container maxWidth="sm" className={classes.alertContainer}>
+                    <Alert severity="info">
+                        <AlertTitle>Note</AlertTitle>
+                        After successful signup you will be redirected to dashboard.
+                        You dont need email verification or re-login to access dashboard.
+                    </Alert>
+                </Container>
+                <Box display="flex" justifyContent="center" alignItems="center" className={classes.root}>
+                    <Card variant="outlined" className={classes.card}>
+                        <div className={classes.cardHeader}>
+                            <Typography variant="h4" component="h1">Demo Signup</Typography>
+                            <Typography variant="body1">Register your account</Typography>
+                        </div>
 
-
-    return (
-        <>
-            <Container maxWidth="sm" className={classes.alertContainer}>
-                <Alert severity="info">
-                    <AlertTitle>Note</AlertTitle>
-                    After successful signup you will be redirected to dashboard.
-                    You dont need email verification or re-login to access dashboard.
-                </Alert>
-            </Container>
-            <Box display="flex" justifyContent="center" alignItems="center" className={classes.root}>
-                <Card variant="outlined" className={classes.card}>
-                    <div className={classes.cardHeader}>
-                        <Typography variant="h4" component="h1">Demo Signup</Typography>
-                        <Typography variant="body1">Register your account</Typography>
-                    </div>
-
-                    {/*signup form */}
-                    <Box
-                        component="form"
-                        onSubmit={handleSubmit(handleFormSubmit)}
-                        className={classes.form}
-                    >
-                        <FormInput name="email"
-                                   type="email"
-                                   label="Email"
-                                   control={control}
-                                   customRules={{pattern: emailValidationRegex}}/>
-                        <FormInput name="password"
-                                   type="password"
-                                   label="Password"
-                                   control={control}
-                                   customRules={{pattern: passwordValidationRegex}}/>
-                        <FormInput name="confirmPassword"
-                                   type="password"
-                                   label="Confirm Password"
-                                   control={control}
-                                   watch={watch}
-                                   watchSibling="password"/>
-
-                        <Button variant="contained"
-                                color="primary"
-                                type="submit"
-                                size="large"
-                                disabled={status.buttonLoading}
+                        {/*signup form */}
+                        <Box
+                            component="form"
+                            onSubmit={handleSubmit(handleFormSubmit)}
+                            className={classes.form}
                         >
-                            {status.buttonLoading
-                                ? <CircularProgress size="1.7rem"/>
-                                : <span>Signup</span>}
-                        </Button>
+                            <FormInput name="email"
+                                       type="text"
+                                       label="Email"
+                                       control={control}
+                                       customRules={{pattern: emailValidationRegex}}/>
+                            <FormInput name="password"
+                                       type="password"
+                                       label="Password"
+                                       control={control}
+                                       customRules={{pattern: passwordValidationRegex}}/>
+                            <FormInput name="confirmPassword"
+                                       type="password"
+                                       label="Confirm Password"
+                                       control={control}
+                                       watch={watch}
+                                       watchSibling="password"/>
 
-                    </Box>
-                    <Box padding="0 2rem 2rem">
-                        <Link to="/" style={{textDecoration: "none"}}>
-                            <Button variant="text" color="secondary" size="large" fullWidth>
-                                Back to Login
+                            <Button variant="contained"
+                                    color="primary"
+                                    type="submit"
+                                    size="large"
+                                    disabled={status.buttonLoading}
+                            >
+                                {status.buttonLoading
+                                    ? <CircularProgress size="1.7rem"/>
+                                    : <span>Signup</span>}
                             </Button>
-                        </Link>
-                    </Box>
-                </Card>
-            </Box>
-        </>
-    );
+
+                        </Box>
+                        <Box padding="0 2rem 2rem">
+                            <Link to="/" style={{textDecoration: "none"}}>
+                                <Button variant="text" color="secondary" size="large" fullWidth>
+                                    Back to Login
+                                </Button>
+                            </Link>
+                        </Box>
+                    </Card>
+                </Box>
+            </>
+        );
+
+    return <Redirect to="/dashboard"/>
+
 }

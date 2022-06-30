@@ -55,10 +55,13 @@ export function AuthProvider({children}: { children: React.ReactNode }) {
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                // setCurrentUser(user);
-                // setLoading(false)
+                setCurrentUser(user);
                 setStatus((prevState) => ({...prevState, buttonLoading: false}))
-                history.push("/dashboard");
+                history.push("/dashboard", {message: "Successfully logged in."});
+
+                //https://stackoverflow.com/questions/51333278/how-does-react-router-persist-location-state-over-page-refreshes
+                window.history.replaceState("", '', '');
+
             })
             .catch((error) => {
                 console.log(error.code)
@@ -76,7 +79,11 @@ export function AuthProvider({children}: { children: React.ReactNode }) {
                 const user = userCredential.user;
                 setCurrentUser(user)
                 setStatus((prevState) => ({...prevState, buttonLoading: false}))
-                history.push("/dashboard");
+                history.push({pathname: "/dashboard", state: {message: "Account successfully created."}});
+
+                //https://stackoverflow.com/questions/51333278/how-does-react-router-persist-location-state-over-page-refreshes
+                window.history.replaceState("", '', '');
+
             })
             .catch((error) => {
                 console.log(error.code)
@@ -127,7 +134,7 @@ function handleFirebaseErrors<T>(errorCode: string, setError: FieldPath<T>) {
             setError("password", {type: "custom", message: "Weak password"})
             break;
         case "auth/too-many-requests":
-            setError("email", {type: "custom", message: "Account temporarily disabled, contact admin"})
+            setError("email", {type: "custom", message: "Account temporarily disabled, try again later"})
             break;
         default:
             setError("email", {type: "custom", message: "Email/Password wrong"})
