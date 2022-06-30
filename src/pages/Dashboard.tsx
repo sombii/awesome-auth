@@ -1,8 +1,6 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {AuthContext, AuthContextValue} from "../context/AuthContext";
 import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
 import {useLocation} from "react-router-dom";
 import {Helmet} from "react-helmet-async";
 import List from "@material-ui/core/List";
@@ -11,14 +9,13 @@ import ListItem from "@material-ui/core/ListItem";
 import Drawer from "@material-ui/core/Drawer";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
-import makeStyles from "@material-ui/styles/makeStyles";
-import {Theme} from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import ToastNotification from "../components/ToastNotification";
 
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex',
         },

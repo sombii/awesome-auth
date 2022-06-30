@@ -11,8 +11,6 @@ import {emailValidationRegex} from "../utils";
 import {AuthContext, AuthContextValue} from "../context/AuthContext";
 import SimpleBackdrop from "../components/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
 import {Helmet} from "react-helmet-async";
 import ToastNotification from "../components/ToastNotification";
 
@@ -56,7 +54,6 @@ export default function Login() {
             password: ""
         }
     });
-    const [openToast, setOpenToast] = React.useState(true);
 
     const {state} = useLocation<{ message: string }>();
 
@@ -71,14 +68,6 @@ export default function Login() {
     const handleFormSubmit: SubmitHandler<LoginFormInput> = async (data: LoginFormInput) => {
         login(data, setError);
     }
-
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setOpenToast(false);
-    };
-
 
     if (status.initialLoading) {
         return <SimpleBackdrop/>

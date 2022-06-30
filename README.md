@@ -2,11 +2,11 @@
 
 - React
 - MaterialUI 4
-- React Router 5
-- React Hook Forms
-- Context API
-- Typescript (My first project using TS)
 - Firebase Authentication (Email/Password)
+- React Hook Forms
+- Typescript (My first project using TS)
+- React Router 5
+- Context API
 
 # Routes 
 - Login route - "/"
@@ -21,7 +21,6 @@
 - Error handling | done
 - React Helmet | done
 - 404 routes handling | done
-- View pass on passwords field
 
 
 
