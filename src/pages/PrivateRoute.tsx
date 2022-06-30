@@ -11,8 +11,8 @@ export default function PrivateRoute({children, path}: { children: React.ReactNo
         return <SimpleBackdrop/>
 
     return (
-        <Route exact path={path}>
-            {currentUser ? children : <Redirect to="/"/>}
+        <Route exact path={path} >
+            {currentUser ? children : <Redirect to={{pathname: "/", state: {message: "Please login first."}}}/>}
         </Route>
     );
 }

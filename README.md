@@ -8,17 +8,20 @@
 - Typescript (My first project using TS)
 - Firebase Authentication (Email/Password)
 
+# Routes 
+- Login route - "/"
+- Signup route - "/signup"
+- Authenticated route - "/dashboard"
 
 # TODO
 
 - UI for Login/Signup | done
 - Implement authentication - login/signup | done
 - Form/Input validation (client side) | done
-- UI for dash | in progress
 - Error handling | done
-- React Helmet | in progress
-- View pass on passwords field
+- React Helmet | done
 - 404 routes handling | done
+- View pass on passwords field
 
 
 

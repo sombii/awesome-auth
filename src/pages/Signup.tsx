@@ -14,7 +14,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 import AlertTitle from "@material-ui/lab/AlertTitle";
 import Container from "@material-ui/core/Container";
-import {Grid} from "@material-ui/core";
+import {Helmet} from "react-helmet-async";
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -75,6 +75,9 @@ export default function Signup() {
     if (!status.initialLoading && !currentUser)
         return (
             <>
+                <Helmet>
+                    <title>Register your account - Awesome login form</title>
+                </Helmet>
                 <Container maxWidth="sm" className={classes.alertContainer}>
                     <Alert severity="info">
                         <AlertTitle>Note</AlertTitle>

@@ -4,46 +4,86 @@ import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import {useLocation} from "react-router-dom";
+import {Helmet} from "react-helmet-async";
+import List from "@material-ui/core/List";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItem from "@material-ui/core/ListItem";
+import Drawer from "@material-ui/core/Drawer";
+import ListItemText from "@material-ui/core/ListItemText";
+import Divider from "@material-ui/core/Divider";
+import makeStyles from "@material-ui/styles/makeStyles";
+import {Theme} from "@material-ui/core/styles";
+import ToastNotification from "../components/ToastNotification";
 
-type LocationState = {
-    message: "",
-    show: boolean
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme: Theme) => ({
+        root: {
+            display: 'flex',
+        },
+        drawer: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
+        drawerPaper: {
+            width: drawerWidth,
+        },
+        // necessary for content to be below app bar
+        toolbar: theme.mixins.toolbar,
+        content: {
+            flexGrow: 1,
+            backgroundColor: theme.palette.background.default,
+            padding: theme.spacing(3),
+        },
+    }),
+);
+
+function InboxIcon() {
+    return null;
+}
+
+function MailIcon() {
+    return null;
 }
 
 export default function Dashboard() {
 
+    const classes = useStyles();
+
     const {logout, currentUser} = useContext(AuthContext) as AuthContextValue;
     const {state} = useLocation<{ message: string }>();
 
-    const [open, setOpen] = React.useState(true);
-
-    useEffect(() => {
-    }, []);
-
-
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setOpen(false);
-    };
 
     return (
         <div>
-            <p>Hello <strong>{currentUser!.email}</strong></p>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => logout()}>
-                Logout
-            </Button>
+            <Helmet>
+                <title>Dashboard - Awesome login form</title>
+            </Helmet>
+
+            <div className={classes.root}>
+                <Drawer className={classes.drawer} variant="permanent" classes={{paper: classes.drawerPaper,}}
+                        anchor="left">
+                    <div className={classes.toolbar}/>
+                    <Divider/>
+                    <List>
+                        {['Dashboard', 'Settings', 'Profile', 'About'].map((text, index) => (
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                                <ListItemText primary={text}/>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Divider/>
+                </Drawer>
+                <main className={classes.content}>
+                    <p>Hello <strong>{currentUser!.email}</strong></p>
+                    <Button variant="contained" color="primary" onClick={() => logout()}>Logout</Button>
+                </main>
+            </div>
+
             {!!state &&
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}
-                          anchorOrigin={{vertical: "top", horizontal: "right"}}>
-                    <Alert onClose={handleClose} severity="success">
-                        {state?.message || "ss"}
-                    </Alert>
-                </Snackbar>
+                <ToastNotification message={state.message} severity="success"/>
             }
         </div>
     );

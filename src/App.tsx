@@ -10,10 +10,13 @@ import PrivateRoute from "./pages/PrivateRoute";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
     return (
+        <HelmetProvider>
         <Container maxWidth={false}>
+            <CssBaseline/>
             <Switch>
                 <PrivateRoute path="/dashboard">
                     <Dashboard/>
@@ -27,6 +30,7 @@ function App() {
                 <Route path="*" component={PageNotFound}/>
             </Switch>
         </Container>
+        </HelmetProvider>
     );
 }
 
