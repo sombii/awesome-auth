@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-interface LoginFormInput {
+export interface LoginFormInput {
     email: string,
     password: string
 }
@@ -46,7 +46,7 @@ interface LoginFormInput {
 export default function Login() {
 
     const classes = useStyles();
-    const {control, handleSubmit} = useForm<LoginFormInput>({
+    const {control, handleSubmit, setError} = useForm<LoginFormInput>({
         defaultValues: {
             email: "",
             password: ""
@@ -56,10 +56,7 @@ export default function Login() {
     const {login, currentUser, status} = useContext(AuthContext) as AuthContextValue;
 
     const handleFormSubmit: SubmitHandler<LoginFormInput> = async (data: LoginFormInput) => {
-        try {
-            const a = await login(data);
-        } catch (err) {
-        }
+        login(data, setError);
     }
 
     if (status.initialLoading)

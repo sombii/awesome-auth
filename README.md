@@ -15,8 +15,10 @@
 - Implement authentication - login/signup | done
 - Form/Input validation (client side) | done
 - UI for dash | in progress
-- Error handling | in progress
+- Error handling | done
 - React Helmet | in progress
+- View pass on passwords field
+- 404 routes handling | done
 
 
 
